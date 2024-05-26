@@ -2,31 +2,32 @@
 
 ##  Overview
 
-This Flask application provides a simple RESTful API to manage country data stored in a MySQL database. The application includes endpoints for public access, user authentication, and various operations on country data. JWT tokens are used for securing specific routes.
+- This Flask application provides a simple RESTful API to manage country data stored in a MySQL database. The application includes endpoints for public access, user authentication, and various operations on country data. JWT tokens are used for securing specific routes.
 
 ##  Features
 
-Public Routes: Accessible without authentication.
-Protected Routes: Require a valid JWT token.
-CRUD Operations: Create, read, update, and delete country data.
-JWT Authentication: Secure routes with token-based authentication.
+- Public Routes: Accessible without authentication.
+- Protected Routes: Require a valid JWT token.
+- CRUD Operations: Create, read, update, and delete country data.
+- JWT Authentication: Secure routes with token-based - authentication.
 
 ## Requirements
 
-Python 3.x
-Flask
-Flask-MySQLdb
-PyJWT
-unittest (for testing)
+- Python 3.x
+- Flask
+- Flask-MySQLdb
+- PyJWT
+- unittest (for testing)
 
 
 ## Installation
 
-Clone the repository
-Create a virtual environment and activate it
-Install the dependencies
-Configure MySQL Database
-Set up a MySQL database and update the app.config in the application with your database credentials.
+###### 1. Clone the repository
+###### 2. Create a virtual environment and activate it
+###### 3. Install the dependencies
+###### 4. Configure MySQL Database
+###### 5. Set up a MySQL database and update the app.
+###### 6. Config in the  application with your database credentials.
 
 ## API Endpoints
 Public Endpoints
@@ -45,12 +46,12 @@ Public Endpoints
 ###### DELETE /countries/<int:id>: Delete country by ID.
 
 ## 8. Authentication
-Use the /login endpoint to obtain a JWT token. Include this token in the x-access-token header for requests to protected endpoints.
+- Use the /login endpoint to obtain a JWT token. Include this token in the x-access-token header for requests to protected endpoints.
 
 ## Login Page
-The application includes a simple HTML login page located at /templates/login.html
+- The application includes a simple HTML login page located at /templates/login.html
 
 ## Testing
-Unit tests are included in the application to verify functionality. Tests are located in tests/test_app.py
+- Unit tests are included in the application to verify functionality. Tests are located in tests/test_app.py
 
 
