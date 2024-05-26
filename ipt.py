@@ -3,9 +3,10 @@ from flask_mysqldb import MySQL
 import jwt
 from datetime import datetime, timedelta
 from functools import wraps
+from dicttoxml import dicttoxml
+import xml.etree.ElementTree as ET
 
 app = Flask(__name__)
-
 
 app.config["SECRET_KEY"] = "VCJ7E1E57OwtFPHMx5E"
 app.config["MYSQL_HOST"] = "localhost"
@@ -82,11 +83,27 @@ def login():
         return render_template("login.html")
 
 
+def convert_to_xml(data):
+    root = ET.Element("root")
+    for item in data:
+        item_element = ET.SubElement(root, "item")
+        for key, value in item.items():
+            child = ET.SubElement(item_element, key)
+            child.text = str(value)
+    return ET.tostring(root, encoding="utf8", method="xml")
+
+
 @app.route("/countries", methods=["GET"])
 @token_required
 def get_countries():
     data = data_fetch("""SELECT * FROM worlddata.countries""")
-    return make_response(jsonify(data), 200)
+    response_format = request.args.get("format", "json").lower()
+
+    if response_format == "xml":
+        xml_data = convert_to_xml(data)
+        return app.response_class(xml_data, mimetype="application/xml")
+    else:
+        return make_response(jsonify(data), 200)
 
 
 @app.route("/countries/<int:id>", methods=["GET"])
@@ -95,7 +112,13 @@ def get_countries_by_id(id):
     data = data_fetch(
         """SELECT * FROM worlddata.countries WHERE CountryID = {}""".format(id)
     )
-    return make_response(jsonify(data), 200)
+    response_format = request.args.get("format", "json").lower()
+
+    if response_format == "xml":
+        xml_data = convert_to_xml(data)
+        return app.response_class(xml_data, mimetype="application/xml")
+    else:
+        return make_response(jsonify(data), 200)
 
 
 @app.route("/Continents", methods=["GET"])
@@ -108,6 +131,7 @@ def get_continents_with_more_than_five_countries():
     HAVING COUNT(CountryID) > 5;
     """
     data = data_fetch(query)
+    response_format = request.args.get("format", "json").lower()
 
     response = {
         "Continents": data,
@@ -115,7 +139,11 @@ def get_continents_with_more_than_five_countries():
         "TotalPopulation": sum(item["TotalPopulation"] for item in data),
     }
 
-    return make_response(jsonify(response), 200)
+    if response_format == "xml":
+        xml_data = convert_to_xml(response)
+        return app.response_class(xml_data, mimetype="application/xml")
+    else:
+        return make_response(jsonify(response), 200)
 
 
 @app.route("/countries", methods=["POST"])
