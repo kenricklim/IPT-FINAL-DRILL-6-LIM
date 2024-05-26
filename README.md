@@ -1,17 +1,17 @@
 # My Flask Application README
 
-## 2. Overview
+##  Overview
 
 This Flask application provides a simple RESTful API to manage country data stored in a MySQL database. The application includes endpoints for public access, user authentication, and various operations on country data. JWT tokens are used for securing specific routes.
 
-## 3. Features
+##  Features
 
 Public Routes: Accessible without authentication.
 Protected Routes: Require a valid JWT token.
 CRUD Operations: Create, read, update, and delete country data.
 JWT Authentication: Secure routes with token-based authentication.
 
-## 4. Requirements
+## Requirements
 
 Python 3.x
 Flask
@@ -20,7 +20,7 @@ PyJWT
 unittest (for testing)
 
 
-## 5. Installation
+## Installation
 
 Clone the repository
 Create a virtual environment and activate it
@@ -28,7 +28,7 @@ Install the dependencies
 Configure MySQL Database
 Set up a MySQL database and update the app.config in the application with your database credentials.
 
-## 6. API Endpoints
+## API Endpoints
 Public Endpoints
 
 ###### GET /: Welcome message.
