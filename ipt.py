@@ -83,6 +83,7 @@ def login():
 
 
 @app.route("/countries", methods=["GET"])
+@token_required
 def get_countries():
     data = data_fetch("""SELECT * FROM worlddata.countries""")
     return make_response(jsonify(data), 200)
