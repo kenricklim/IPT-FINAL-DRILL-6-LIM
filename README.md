@@ -30,22 +30,22 @@
 ###### 6. Config in the  application with your database credentials.
 
 ## API Endpoints
-Public Endpoints
 
+## Public Endpoints
 ###### GET /: Welcome message.
 ###### GET /public: Public access endpoint.
 ###### GET /login: Render login page.
 ###### POST /login: Authenticate user and return JWT token.
 ###### GET /countries: Get a list of all countries.
 
-## 7. Protected Endpoints (Require JWT Token)
+## Protected Endpoints (Require JWT Token)
 ###### GET /countries/<int:id>: Get country details by ID.
 ###### GET /Continents: Get continents with more than five countries.
 ###### POST /countries: Add a new country.
 ###### PUT /countries/<int:id>: Update country details by ID.
 ###### DELETE /countries/<int:id>: Delete country by ID.
 
-## 8. Authentication
+## Authentication
 - Use the /login endpoint to obtain a JWT token. Include this token in the x-access-token header for requests to protected endpoints.
 
 ## Login Page
